@@ -26,9 +26,8 @@ namespace Compare
         {
             try
             {
-                // test change
-                //FormCompare formCompare = new FormCompare(new ClsSettings(commandData, elements));
-                //formCompare.ShowDialog();
+                FormCompare formCompare = new FormCompare(new ClsSettings(commandData, elements));
+                formCompare.ShowDialog();
 
                 return Result.Succeeded;
             }

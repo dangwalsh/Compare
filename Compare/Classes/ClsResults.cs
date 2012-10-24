@@ -11,7 +11,7 @@ using Compare.Classes;
 
 namespace Compare
 {
-    public class ClsResults
+    public class ClsResults : INotifyPropertyChanged
     {
         private Document _Doc;
         private int _InstanceId;
@@ -22,6 +22,8 @@ namespace Compare
         private String _InstanceName;
         private String _HostValue;
         private String _InstanceValue;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public int InstanceId
         {
@@ -67,6 +69,7 @@ namespace Compare
                         MessageBox.Show(ex.Message);
                     }
                 }
+                this.NotifyPropertyChanged("HostValue");
             }
         }
         public String InstanceValue
@@ -89,6 +92,7 @@ namespace Compare
                         MessageBox.Show(ex.Message);
                     }
                 }
+                this.NotifyPropertyChanged("InstanceValue");
             }
         }
 
@@ -109,6 +113,12 @@ namespace Compare
             _InstanceValue = i.Value;
             _HostName = hName;
             _InstanceName = iName;
+        }
+
+        private void NotifyPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
     }
 }
