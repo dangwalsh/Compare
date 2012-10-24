@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Compare</Text>
+    <Description>Select two element types and compare a like parameters</Description>
+    <Assembly>Compare.dll</Assembly>
+    <FullClassName>Compare.Command</FullClassName>
+    <ClientId>1a903a96-76c7-0002-9e50-2418a2549956</ClientId>
+    <VendorId>XXXX</VendorId>
+    <VendorDescription>XXXX</VendorDescription>
+  </AddIn>
+
+</RevitAddIns>
