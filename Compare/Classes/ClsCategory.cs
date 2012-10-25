@@ -14,21 +14,35 @@ namespace Compare.Classes
         private List<ClsParameter> _AllParameters = new List<ClsParameter>();
         private Document _Doc;
 
+        /// <summary>
+        /// Category name property
+        /// </summary>
         public String CatName
         {
             get { return _Cat.Name; }
         }
 
+        /// <summary>
+        /// Property holding the list of elements
+        /// </summary>
         public List<Element> InstanceElements
         {
             get { return _InstanceElements; }
         }
 
+        /// <summary>
+        /// Property holding the list of parameters
+        /// </summary>
         public List<ClsParameter> AllParameters
         {
             get { return _AllParameters; }
         }
 
+        /// <summary>
+        /// Constructor for category helper class
+        /// </summary>
+        /// <param name="cat"></param>
+        /// <param name="doc"></param>
         public ClsCategory(Category cat, Document doc)
         {
             _Cat = cat;
@@ -40,6 +54,9 @@ namespace Compare.Classes
             _InstanceElements = col.ToElements().ToList();
         }
 
+        /// <summary>
+        /// Gets both instance and type parameters
+        /// </summary>
         public void GetAllParameters()
         {
             foreach (Element elem in _InstanceElements)
@@ -51,6 +68,10 @@ namespace Compare.Classes
             }
         }
 
+        /// <summary>
+        /// Returns the value of a parameter
+        /// </summary>
+        /// <param name="elem">Element</param>
         void ParamItor(Element elem)
         {
             foreach (Parameter param in elem.Parameters)

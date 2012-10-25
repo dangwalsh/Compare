@@ -18,15 +18,19 @@ namespace Compare.UI
         private ClsSettings _Settings = null;
         private BindingList<ClsResults> _Results = new BindingList<ClsResults>();
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="settings"></param>
         public FormCompare(ClsSettings settings)
         {
             InitializeComponent();
             _Settings = settings;
-            
-            
         }
 
+        /// <summary>
+        /// Iterate through element collection of selected category
+        /// </summary>
         void RunComparison()
         {
             ClsCategory catInst = this.comboInst.SelectedItem as ClsCategory;
@@ -61,7 +65,6 @@ namespace Compare.UI
                                 _Results.Add(new ClsResults(_Settings.Doc, inst.Id.IntegerValue, host.Id.IntegerValue, paramHost, paramInst, host.Name, inst.Name));
                             }
                         }
-
                     }
                 }
 
@@ -73,6 +76,9 @@ namespace Compare.UI
             LoadResults();
         }
 
+        /// <summary>
+        /// Update the list of param's to go into the corresponding combobox
+        /// </summary>
         void UpdateParameterList()
         {
             try
@@ -101,9 +107,11 @@ namespace Compare.UI
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
+        /// <summary>
+        /// Push the list into the datagrid
+        /// </summary>
         void LoadResults()
         {
             try
@@ -112,7 +120,6 @@ namespace Compare.UI
                 this.InstanceValue.HeaderText = "Instance " + this.comboInstProp.SelectedItem.ToString();
                 this.HostValue.HeaderText = "Host " + this.comboInstProp.SelectedItem.ToString();
                 this.dataGridView1.DataSource = _Results;
-
             }
             catch (Exception ex)
             {
@@ -120,6 +127,9 @@ namespace Compare.UI
             }
         }
 
+        /// <summary>
+        /// allows user to hilight cells based on certain criteria
+        /// </summary>
         private void ColorCells()
         {
             System.Drawing.Color nocolor = System.Drawing.Color.WhiteSmoke;
@@ -175,8 +185,6 @@ namespace Compare.UI
                 this.comboInst.DataSource = _Settings.InstCategoryList;
                 this.comboInst.DisplayMember = "CatName";
                 this.comboInst.SelectedIndex = 0;
-
-                
             }
             catch (Exception ex)
             {

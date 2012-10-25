@@ -23,32 +23,62 @@ namespace Compare
         private String _HostValue;
         private String _InstanceValue;
 
+        /// <summary>
+        /// Event handler for property changes
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// ElementId of instance object
+        /// </summary>
         public int InstanceId
         {
             get { return _InstanceId; }
         }
+
+        /// <summary>
+        /// ElementId of host object
+        /// </summary>
         public int HostId
         {
             get { return _HostId; }
         }
+
+        /// <summary>
+        /// Parameter of host 
+        /// </summary>
         public ClsParameter HostParameter
         {
             get { return _HostParameter; }
         }
+
+        /// <summary>
+        /// Parameter of instance
+        /// </summary>
         public ClsParameter InstanceParameter
         {
             get { return _InstanceParameter; }
         }
+
+        /// <summary>
+        /// Name of host
+        /// </summary>
         public String HostName
         {
             get { return _HostName; }
         }
+
+        /// <summary>
+        /// Name of instance
+        /// </summary>
         public String InstanceName
         {
             get { return _InstanceName; }
         }
+
+        /// <summary>
+        /// Value of parameter of host
+        /// </summary>
         public String HostValue
         {
             get { return _HostValue; }
@@ -72,6 +102,10 @@ namespace Compare
                 this.NotifyPropertyChanged("HostValue");
             }
         }
+
+        /// <summary>
+        /// Value of parameter of instance
+        /// </summary>
         public String InstanceValue
         {
             get { return _InstanceValue; }
@@ -96,6 +130,16 @@ namespace Compare
             }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="instId"></param>
+        /// <param name="hostId"></param>
+        /// <param name="h"></param>
+        /// <param name="i"></param>
+        /// <param name="hName"></param>
+        /// <param name="iName"></param>
         public ClsResults(Document doc,
                           int instId,
                           int hostId,
@@ -115,6 +159,10 @@ namespace Compare
             _InstanceName = iName;
         }
 
+        /// <summary>
+        /// Raises PropertyChanged event
+        /// </summary>
+        /// <param name="name"></param>
         private void NotifyPropertyChanged(string name)
         {
             if (PropertyChanged != null)
