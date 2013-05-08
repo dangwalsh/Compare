@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCompare));
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -63,7 +64,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 32);
             this.btnRefresh.TabIndex = 20;
-            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.Text = "Compare";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -76,6 +77,7 @@
             this.btnExport.TabIndex = 18;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnCancel
             // 
@@ -213,8 +215,8 @@
             this.comboColor.Items.AddRange(new object[] {
             "is equal to",
             "is not equal to",
-            "is greater than",
-            "is less than"});
+            "is less than",
+            "is greater than"});
             this.comboColor.Location = new System.Drawing.Point(100, 53);
             this.comboColor.Name = "comboColor";
             this.comboColor.Size = new System.Drawing.Size(80, 21);
@@ -298,6 +300,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCompare";
             this.Text = "Compare";
             this.Load += new System.EventHandler(this.FormCompare_Load);

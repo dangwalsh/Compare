@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 using Autodesk.Revit.DB;
 
@@ -101,7 +102,7 @@ namespace Compare.UI
                     if (!this.comboInstProp.Items.Contains(param.ParameterObject.Definition.Name))
                         this.comboInstProp.Items.Add(param.ParameterObject.Definition.Name);
                 }
-                if (this.comboInstProp.Items != null) this.comboInstProp.SelectedIndex = 0;
+                if (this.comboInstProp.Items.Count != 0) this.comboInstProp.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -198,6 +199,10 @@ namespace Compare.UI
             {
                 UpdateParameterList();
             }
+            catch (System.NullReferenceException)
+            {
+
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -236,6 +241,51 @@ namespace Compare.UI
         private void comboColor_SelectedIndexChanged(object sender, EventArgs e)
         {
             ColorCells();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Text file|*.txt";
+            sfd.Title = "Save File";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fs = File.Open(sfd.FileName, FileMode.CreateNew);
+                StreamWriter sw = new StreamWriter(fs);
+                string line = "";
+                foreach (DataGridViewColumn col in this.dataGridView1.Columns)
+                {
+                    if (col.HeaderText != null)
+                    {
+                        line += col.HeaderText + "\t";
+                    }
+                    else
+                    {
+                        line += "\t";
+                    }
+                }
+                line += "\n";
+                sw.WriteLine(line);
+                foreach (DataGridViewRow row in this.dataGridView1.Rows)
+                {
+                    line = "";
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null)
+                        {
+                            line += cell.Value.ToString() + "\t";
+                        }
+                        else
+                        {
+                            line += "\t";
+                        }
+                    }
+                    line += "\n";
+                    sw.WriteLine(line);
+                }
+                sw.Close();
+            }
+            
         }
     }
 }
